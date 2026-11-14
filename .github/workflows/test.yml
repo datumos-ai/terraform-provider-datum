@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go build ./...
+      - run: go vet ./...
+      - run: go test ./...
+      - name: Nothing here names an operator (this repository is public)
+        run: |
+          if grep -rInE -i 'ringier|axel[ -]?springer|\brasp\b|dreamlab|smartdev|artifactory|monetisation' \
+              --exclude=NOTICE --exclude=LICENSE --exclude=go.sum --exclude=test.yml --exclude-dir=.git .; then
+            echo "::error::a mention that must not appear in a public repository"
+            exit 1
+          fi

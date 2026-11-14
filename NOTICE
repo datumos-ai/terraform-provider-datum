@@ -1,0 +1,8 @@
+Terraform provider for Datum
+Copyright 2026 Ringier Axel Springer Polska sp. z o.o.
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+"Datum" and "DatumOS" are trademarks of their owner. The license grants no
+right to use them, except as required to describe the origin of this
+software (Apache License 2.0, section 6).
